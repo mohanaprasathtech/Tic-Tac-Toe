@@ -1,5 +1,6 @@
+import { Symbol } from "../types/rooms";
 
-export const checkWinner = (board: (string | null)[]): string | null => {
+export const checkWinner = (board: (string | null)[]): Symbol | null => {
     const lines = [
         [0, 1, 2],
         [3, 4, 5],
@@ -12,8 +13,12 @@ export const checkWinner = (board: (string | null)[]): string | null => {
     ];
     for (const [a, b, c] of lines) {
         if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-            return board[a];
+            return board[a] as Symbol;
         }
     }
     return null;
 };
+
+export const isDraw = (board: (string | null)[]): boolean => {
+    return board.every(Boolean);
+}
