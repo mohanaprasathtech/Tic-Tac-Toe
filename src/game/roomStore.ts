@@ -30,3 +30,14 @@ export const createRoom = (p1: string, p2: string) => {
 export const getRoom = (roomId: string) => {
     return rooms[roomId] ?? null;
 }
+
+//resetting a room
+export const resetRoom = (roomId: string) => {
+    const room = rooms[roomId];
+    if (!room) {
+        return null;
+    }
+    room.board = Array(9).fill(null);
+    room.currentTurn = "X";
+    return room;
+}
