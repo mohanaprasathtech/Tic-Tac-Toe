@@ -20,7 +20,7 @@ export const socketHandler = (io: Server, socket: Socket) => {
             currentTurn: [...room.currentTurn],
             mySymbol: "X" as Symbol
         })
-        //player O;
+        //player O
         io.to(socket.id).emit("start_game", {
             roomId,
             board: [...room.board],
