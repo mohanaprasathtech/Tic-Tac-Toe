@@ -9,7 +9,6 @@ export const socketHandler = (io: Server, socket: Socket) => {
         setWaitingPlayer(socket.id)
     } else {
         const { roomId, room } = createRoom(waiting, socket.id);
-
         io.to(waiting).socketsJoin(roomId);
         socket.join(roomId);
 
