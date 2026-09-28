@@ -18,14 +18,14 @@ export const socketHandler = (io: Server, socket: Socket) => {
         io.to(waiting).emit("start_game", {
             roomId,
             board: [...room.board],
-            currentTurn: [...room.currentTurn],
+            currentTurn: room.currentTurn,
             mySymbol: "X" as Symbol
         })
         //player O
         io.to(socket.id).emit("start_game", {
             roomId,
             board: [...room.board],
-            currentTurn: [...room.currentTurn],
+            currentTurn: room.currentTurn,
             mySymbol: "O" as Symbol
         })
         //clearing waiting player
