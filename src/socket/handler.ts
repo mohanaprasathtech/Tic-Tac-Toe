@@ -66,5 +66,25 @@ export const socketHandler = (io: Server, socket: Socket) => {
         }
 
     })
+
+    socket.on("reset_game", ({ roomId }: { roomId: string }) => {
+        const room = getRoom(roomId);
+        if (!room) return;
+
+        const [p1, p2] = room.player;
+
+        io.to(p1).emit("game_start", {
+            roomId,
+            board: [...room.board],
+            currentTurn: room.currentTurn,
+            mySymbol: "X" as Symbol,
+        })
+        io.to(p2).emit("game_start", {
+            roomId,
+            board: [...room.board],
+            currentTurn: room.currentTurn,
+            mySymbol: "O" as Symbol,
+        })
+    })
 };
 
